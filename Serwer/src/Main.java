@@ -14,13 +14,38 @@ class jHTTPSMulti extends Thread{
         }
         catch (UnknownHostException ex) { System.err.println(ex); }
         String document = "<html>\r\n" +
-                "<body><br>\r\n" +
+                "<body onload=\"startTime()\"><br>\r\n" +
                 "<h2><font color=red>jHTTPApp demo document\r\n" +
                 "</font></h2>\r\n" +
                 "<h3>Serwer na watkach</h3><hr>\r\n" +
                 "Data: <b>" + new Date() + "</b><br>\r\n" +
                 "Nazwa hosta: <b>" + name + "</b><br>\r\n" +
-                "IP hosta: <b>" + ip + "</b><br>\r\n" +
+                "IP hosta: <b>" + ip + "</b><br>\r\n\n" +
+                "ZEGAREK w js: \n"+
+                "<div id=\"txt\">\r\n"+
+                "</div>\r\n"+
+                "<script>\r\n" +
+                "function startTime() {\n" +
+                "  const today = new Date();\n" +
+                "  let h = today.getHours();\n" +
+                "  let m = today.getMinutes();\n" +
+                "  let s = today.getSeconds();\n" +
+                "  m = checkTime(m);\n" +
+                "  s = checkTime(s);\n" +
+                "  document.getElementById('txt').innerHTML =  h + \":\" + m + \":\" + s;\n" +
+                "  setTimeout(startTime, 1000);\n" +
+                "}"+
+                "function checkTime(i) {\n" +
+                "  if (i < 10) {i = \"0\" + i};\n" +
+                "  return i;\n" +
+                "}\r\n"+
+                "</script>\r\n"+
+                "<style>\r\n" +
+                "body {\n" +
+                "max-width: max-content;\n" +
+                "margin: auto;\n" +
+                "}\n" +
+                "</style>\r\n"+
                 "<hr>\r\n" +
                 "</body>\r\n" +
                 "</html>\r\n";
